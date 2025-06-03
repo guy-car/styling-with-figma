@@ -26,9 +26,21 @@ function TaskList() {
 
   const [tasks, setTasks] = useState(intialTasks)
 
+  const toggleTask = (taskId: number) => {
+    setTasks((prev) => {
+        const newTasks = structuredClone(prev)
+        const taskToChange = newTasks.find((task) => task.id === taskId)
+        if (!taskToChange) return newTasks
+        taskToChange.checked = !taskToChange.checked
+        return newTasks
+    })
+  }
+
+  const sortedTasks = tasks.sort((task1, task2) => task1.checked ? -1 : 1)
+
   return (
 
-    tasks.map(task => <Task key={task.id} taskData={task}/>)
+    sortedTasks.map(task => <Task key={task.id} taskData={task} toggleChecked={() => toggleTask(task.id)}/>)
   )
 }
 
