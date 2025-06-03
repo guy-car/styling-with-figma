@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import TaskList from './Tasklist'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-    <h1>Hello Fractal</h1>
+    <h1>Task List</h1>
+    <TaskList />
     </>
   )
 }
